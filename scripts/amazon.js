@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart,addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 let productsHtml='';
 
@@ -64,9 +64,6 @@ we can name any specific thing with this
 a.)it is just an html attribute
 b.)it have to start with "data-"
 c.)then give it any name
-
-
-
 */
 
 document.querySelector('.js-products-grid')
@@ -76,37 +73,23 @@ document.querySelector('.js-products-grid')
   .forEach((button)=>{
     button.addEventListener('click',()=>{
       const productId= button.dataset.productId;
-
+      addToCart(productId);
+      updateCartQuantity();
       
+    })
+  })
 
-      let matchingItem;
-      cart.forEach((item)=>{
-        if(productId===item.productId){
-          matchingItem=item;
-        }
-      })
-
-      if(matchingItem){
-        matchingItem.quantity +=1;
-      }
-      else{
-        cart.push({
-        productId:productId,
-        quantity:1
-      });
+ function updateCartQuantity(){
+          let cartQuantity=0;
+          cart.forEach((cartItem)=>{
+            cartQuantity+=cartItem.quantity;
+          })
+          document.querySelector('.js-cart-quantity')
+           .innerHTML=cartQuantity;
         
       }
 
-      let cartQuantity=0;
-      cart.forEach((item)=>{
-        cartQuantity+=item.quantity;
 
-      })
-
-      document.querySelector('.js-cart-quantity')
-       .innerHTML=cartQuantity;
-    })
-  })
 
 
   //dataset gives all the data-attributes used in it 
