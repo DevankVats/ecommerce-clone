@@ -4,11 +4,12 @@ import { deliveryOptions,getDeliveryOption } from '../../data/deliveryOptions.js
 import formatCurrency from '../../data/utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
-hello();
-const todaysDate=dayjs();
-const delieverDate=todaysDate.add(7,'days');
-console.log(delieverDate.format('dddd MMMM D'));
+// hello();
+// const todaysDate=dayjs();
+// const delieverDate=todaysDate.add(7,'days');
+// console.log(delieverDate.format('dddd MMMM D'));
 
 
 
@@ -149,6 +150,7 @@ console.log(delieverDate.format('dddd MMMM D'));
           removeFromCount(productId);
           const container=document.querySelector(`.js-cart-item-container-${productId}`);
           container.remove();
+          renderPaymentSummary();
         })
       })
 
@@ -158,6 +160,7 @@ console.log(delieverDate.format('dddd MMMM D'));
           const {productId,deliveryOptionId}=element.dataset;
           updateDeliveryOption(productId,deliveryOptionId);
           renderOrderSummary();
+          renderPaymentSummary();
         })
       });
 
