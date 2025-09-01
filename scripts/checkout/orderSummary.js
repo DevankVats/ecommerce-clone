@@ -1,6 +1,6 @@
 import {cart,removeFromCount,updateDeliveryOption} from '../../data/cart.js'
 import {products} from '../../data/products.js'
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { deliveryOptions,getDeliveryOption } from '../../data/deliveryOptions.js';
 import formatCurrency from '../../data/utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
@@ -80,12 +80,8 @@ console.log(delieverDate.format('dddd MMMM D'));
       })
       
     const deliveryOptionId=cartItem.deliveryOptionId;
-      let deliveryOption;
-      deliveryOptions.forEach((option)=>{
-        if(option.id===deliveryOptionId){
-          deliveryOption=option;
-        }
-      })
+      const deliveryOption=getDeliveryOption(deliveryOptionId);
+      
       const today=dayjs();
         const deliveryDate=today.add(
           deliveryOption.deliveryDays,
@@ -113,7 +109,7 @@ console.log(delieverDate.format('dddd MMMM D'));
                       </div>
                       <div class="product-price">
                       
-                      ${formatCurrency(matchingProduct.priceCents)}
+                      $${formatCurrency(matchingProduct.priceCents)}
                       </div>
                       <div class="product-quantity">
                         <span>

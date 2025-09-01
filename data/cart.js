@@ -1,3 +1,5 @@
+import { getProduct } from "./products.js";
+
 export let cart=JSON.parse(localStorage.getItem('cart'));
 
 if(!cart){
@@ -21,12 +23,13 @@ function saveToStorage(){
 }
 
 export function addToCart(productId){
-  let matchingItem;
-      cart.forEach((cartItem)=>{
-        if(productId===cartItem.productId){
-          matchingItem=cartItem;
-        }
-      })
+   let matchingItem;
+   cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+      matchingItem = cartItem;
+    }
+  });
+
 
       if(matchingItem){
         matchingItem.quantity +=1;
