@@ -1,9 +1,17 @@
 import { getProduct } from "./products.js";
-function Cart(localStorageKey){
-  const cart={
-    cartItems:undefined,
-    loadToStorage(){
-      this.cartItems=JSON.parse(localStorage.getItem(localStorageKey));
+
+class Cart{
+  cartItems;
+  localStorageKey;
+
+  constructor(localStorageKey){
+    this.localStorageKey=localStorageKey;
+    this.loadToStorage();
+  }
+
+
+   loadToStorage(){
+      this.cartItems=JSON.parse(localStorage.getItem(this.localStorageKey));
 
       if(!this.cartItems){
         this.cartItems=[{
@@ -18,10 +26,14 @@ function Cart(localStorageKey){
       }];
       }
 
-      },
+      }
+
+
     saveToStorage(){
-      localStorage.setItem(localStorageKey,JSON.stringify(this.cartItems));
-    },
+      localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
+    }
+
+
     addToCart(productId){
       let matchingItem;
       this.cartItems.forEach((cartItem) => {
@@ -42,7 +54,8 @@ function Cart(localStorageKey){
           });
           }
     this.saveToStorage();
-    },
+    }
+
 
     removeFromCount(productId){
       let newCart=[];
@@ -55,9 +68,10 @@ function Cart(localStorageKey){
     this.cartItems=newCart;
 
     this.saveToStorage();
-    },
+    }
 
-    updateDeliveryOption(productId,deliveryOptionId){
+
+     updateDeliveryOption(productId,deliveryOptionId){
         let matchingItem;
 
       this.cartItems.forEach((cartItem)=>{
@@ -69,22 +83,16 @@ function Cart(localStorageKey){
       this.saveToStorage();
     }
 
+
+
 }
 
 
-return cart;
-}
+
+const cart=new Cart('cart-oop');
+const businessCart=new Cart('cart-business');
 
 
-
-
-const cart=Cart('cart-oop');
-const businessCart=Cart('cart-business');
-
-
-
-cart.loadToStorage();
-businessCart.loadToStorage();
 console.log(cart);
 console.log(businessCart);
 
@@ -95,10 +103,14 @@ console.log(businessCart);
 
 
 /*
+CLASS=> class helps generate these objects
 1.)OOPS:tries to represent real world entites and their functions releted to them.
 2.)note: all code working properly as it is working in past, just we arranged code in objecct.
 3.)OOPS makes our work easy, we can create multiple objects by copying.
-4.) oop means organizing the code into objects(tries to represent real world)
+
+NOTE: a.)we can generate objects with the help of constructor.
+      b.)the method name to create constructor is always constructor.
+      c.)constructor should not return anything;
 */
 
 
