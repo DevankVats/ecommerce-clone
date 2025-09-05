@@ -116,6 +116,8 @@ NOTE: a.)we can generate objects with the help of constructor.
 
 4.) Private methods and variables: which can only accessed inside class
   note: to make a property private we have to use '#' infront of that and to access that we have to access with #. e.g, #localStorageKey
+
+  INHERITANCE=>let us reuse code between classes
 */
 
 
