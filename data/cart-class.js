@@ -2,16 +2,16 @@ import { getProduct } from "./products.js";
 
 class Cart{
   cartItems;
-  localStorageKey;
+  #localStorageKey;
 
   constructor(localStorageKey){
-    this.localStorageKey=localStorageKey;
-    this.loadToStorage();
+    this.#localStorageKey=localStorageKey;
+    this.#loadToStorage();
   }
 
 
-   loadToStorage(){
-      this.cartItems=JSON.parse(localStorage.getItem(this.localStorageKey));
+   #loadToStorage(){
+      this.cartItems=JSON.parse(localStorage.getItem(this.#localStorageKey));
 
       if(!this.cartItems){
         this.cartItems=[{
@@ -30,7 +30,7 @@ class Cart{
 
 
     saveToStorage(){
-      localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
+      localStorage.setItem(this.#localStorageKey,JSON.stringify(this.cartItems));
     }
 
 
@@ -93,6 +93,8 @@ const cart=new Cart('cart-oop');
 const businessCart=new Cart('cart-business');
 
 
+
+
 console.log(cart);
 console.log(businessCart);
 
@@ -111,6 +113,9 @@ CLASS=> class helps generate these objects
 NOTE: a.)we can generate objects with the help of constructor.
       b.)the method name to create constructor is always constructor.
       c.)constructor should not return anything;
+
+4.) Private methods and variables: which can only accessed inside class
+  note: to make a property private we have to use '#' infront of that and to access that we have to access with #. e.g, #localStorageKey
 */
 
 
