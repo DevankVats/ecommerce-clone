@@ -1,5 +1,5 @@
 import {cart,removeFromCount,updateDeliveryOption} from '../../data/cart.js'
-import {products} from '../../data/products.js'
+import {loadProducts,products} from '../../data/products.js'
 import { deliveryOptions,getDeliveryOption } from '../../data/deliveryOptions.js';
 import formatCurrency from '../../data/utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
