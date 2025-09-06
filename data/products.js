@@ -47,6 +47,10 @@ class Clothing extends Product{
 
 }
 
+// const date=new Date();
+// console.log(date);
+// console.log(date.toLocaleTimeString())
+
 
 export function getProduct(productId){
   let matchingItem;
