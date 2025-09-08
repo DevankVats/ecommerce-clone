@@ -131,7 +131,7 @@ import { renderPaymentSummary } from './paymentSummary.js';
                       <div class="delivery-options-title">
                         Choose a delivery option:
                       </div>
-                      ${deliveryOptionsHTML(matchingProduct,cartItem)};
+                      ${deliveryOptionsHTML(matchingProduct,cartItem)}
 
                     </div>
                   </div>

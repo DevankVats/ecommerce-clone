@@ -5,7 +5,27 @@ import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
 import { loadProducts,loadProductsFetch } from "./products.js";
 import { loadCart } from "./cart.js";
 
+async function loadPage(){
 
+  await loadProductsFetch();
+
+  await new Promise((resolve)=>{
+    loadCart(()=>{
+    resolve();
+  });
+  });
+
+  renderOrderSummary();
+  renderPaymentSummary();
+
+}
+loadPage();
+
+
+  
+
+
+/*
 Promise.all([
   loadProductsFetch(),
   new Promise((resolve)=>{
@@ -17,6 +37,7 @@ Promise.all([
   renderOrderSummary();
   renderPaymentSummary();
 })
+  */
 
 /*
 new Promise((resolve)=>{
@@ -57,3 +78,18 @@ PROMISES
  Note:use promises instead of callbacks as it keeps our code flat.
  6.We can run multiple promises together.
 */ 
+
+/* 
+ASYN-AWAIT
+1.)It is the shortcut for promises.
+2.)async makes a function to return promise.
+3.) Await=> let us wait for a promise to finish,before going to next line.
+4.)Await=>let us write asynchronous code as normal code.
+5.) we can only use await, when we are inside async function.
+NOTE: a.)Async-await can only be used with promises,it does'nt do anything with callback.
+      b.)the closest function has to be async.
+      c.)the best pratice to handle asynchronous code,is to use ASYNC-AWAIT,over callback and response.
+
+
+
+*/
