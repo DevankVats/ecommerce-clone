@@ -79,7 +79,9 @@ export function loadProductsFetch(){
         return new Product(productDetails);
       });
       console.log('load products');
-  }); 
+  }).catch((error)=>{
+    console.log('Unexpected error; Please try again Later.');
+  })
   return promise;
 }
 // loadProductsFetch().then(()=>{
@@ -101,12 +103,38 @@ export function loadProducts(fun){
   })
   
 
+  xhr.addEventListener('error',(error)=>{
+    console.log('Unexpected error; Please try again Later.');
+  });
+
   xhr.open('GET','https://supersimplebackend.dev/products')
   xhr.send();
 }
 
 /* 
 FETCH=> better way to make HTTP request, it takes only one paramerter URL , and sends reqeust to that and receives the response in form of promise
+*/
+
+/*
+ERROR-HANDLING
+A.) In callback.
+*)we set up eventListners to handle errors for callback as sometimes it will get ,error results
+(set up a seprate callback just for errors)
+
+B.)In promises.
+*)two methods=>a.).then() ,b.).catch();
+
+C.)In async-await
+*)we use try-catch block=> try contains,code which can cause error,catch contains its solution
+NOTE: a.)we can use try catch with synchonous(or normal code).
+      b.)whenever we get an error it will skip the rest of the code.
+    
+D.) .we can manually  create error in promise
+ 1.)we can manually throw error with throw keyward,throw does'nt work in the future.
+  2.)we can manually throw error with reject(),it is a function that let us create error in future.    
+
+
+
 */
 
 
